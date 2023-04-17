@@ -59,8 +59,10 @@ namespace ImageServer
 
                         using (MemoryStream outputStream = new MemoryStream())
                         {
-                            images.Write(outputStream, _supportedFormats[fileExtension]);
-                            context.Response.ContentType = GetMimeType(_supportedFormats[fileExtension]);
+                            //images.Write(outputStream, _supportedFormats[fileExtension]);
+                            //context.Response.ContentType = GetMimeType(_supportedFormats[fileExtension]);
+                            images.Write(outputStream, MagickFormat.WebP);
+                            context.Response.ContentType = GetMimeType(MagickFormat.WebP);
                             await context.Response.Body.WriteAsync(outputStream.ToArray());
                         }
                     }
