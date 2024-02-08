@@ -63,6 +63,7 @@ namespace ImageServer
                             //context.Response.ContentType = GetMimeType(_supportedFormats[fileExtension]);
                             images.Write(outputStream, MagickFormat.WebP);
                             context.Response.ContentType = GetMimeType(MagickFormat.WebP);
+                            context.Response.Headers.Add("Content-Disposition", "inline"); // Set to 'inline' to display in browser
                             await context.Response.Body.WriteAsync(outputStream.ToArray());
                         }
                     }
